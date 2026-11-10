@@ -15,23 +15,59 @@ async function loadData(){
   renderPriority(reports); renderReports(reports); renderMarkers(reports); renderHeroAreas(reports);
 }
 
-/* Populate the hero neighbourhood tags dynamically from live report areas.
-   Shows every unique area returned by the API — no hardcoded list. */
+/* Static platform coverage directory — display labels only, NOT reports or monitoring coverage.
+   Any area outside this list that appears in an actual submitted report is also shown.  */
+const BENGALURU_AREAS = [
+  "Anekal","Banashankari","Banaswadi","Basavanagudi","Bellandur",
+  "BTM Layout","Devanahalli","Electronic City","Frazer Town","Hebbal",
+  "HSR Layout","Indiranagar","Jayanagar","JP Nagar","Kaggadasapura",
+  "Kengeri","Koramangala","KR Puram","Kumaraswamy Layout","Malleswaram",
+  "Marathahalli","Nagarbhavi","Old Airport Road","Rajajinagar","RT Nagar",
+  "Sarjapur Road","Shivajinagar","Tumkur Road","Ulsoor","Vijayanagar",
+  "Whitefield","Yelahanka","Yeshwanthpur"
+];
+
 function renderHeroAreas(reports){
   const container = $("hero-areas");
   if(!container) return;
-  // Extract unique, non-empty area strings, sorted alphabetically
-  const areas = [...new Set(
-    reports.map(r => (r.area||"").trim()).filter(a => a.length > 0)
-  )].sort((a,b) => a.localeCompare(b, "en-IN"));
 
-  if(areas.length === 0){
-    container.innerHTML = '<span class="hero-tag" style="opacity:.5">No areas reported yet</span>';
+  /* Build a map: normalised-lowercase-name → display name, for every actual report area.
+     Normalisation (trim + toLowerCase) prevents duplicates from whitespace or casing. */
+  const activeMap = new Map();
+  reports.forEach(r => {
+    const raw = (r.area || "").trim();
+    if(raw.length > 0) activeMap.set(raw.toLowerCase(), raw);
+  });
+
+  /* Build the canonical display list from the static directory,
+     using the exact casing defined there. */
+  const directoryMap = new Map(
+    BENGALURU_AREAS.map(a => [a.toLowerCase(), a])
+  );
+
+  /* Merge: start with the full directory, then append any reported areas
+     that are NOT already in the directory (unlisted areas with real reports). */
+  const merged = new Map(directoryMap);
+  activeMap.forEach((displayName, key) => {
+    if(!merged.has(key)) merged.set(key, displayName); // unlisted but reported → include
+  });
+
+  if(merged.size === 0){
+    container.innerHTML = '<span class="hero-tag" style="opacity:.5">No areas on record yet</span>';
     return;
   }
-  container.innerHTML = areas.map(a =>
-    `<span class="hero-tag">${escapeHtml(a)}</span>`
-  ).join('');
+
+  /* Sort alphabetically by display name using Indian English locale. */
+  const sorted = [...merged.entries()].sort((a,b) => a[1].localeCompare(b[1], "en-IN"));
+
+  container.innerHTML = sorted.map(([key, name]) => {
+    const active = activeMap.has(key);
+    const cls = active ? 'hero-tag hero-tag--active' : 'hero-tag';
+    const titleAttr = active ? 'title="Active report submitted for this area"'
+                             : 'title="Listed coverage area — no report submitted yet"';
+    const dot = active ? '<span class="area-dot" aria-hidden="true"></span>' : '';
+    return `<span class="${cls}" ${titleAttr}>${escapeHtml(name)}${dot}</span>`;
+  }).join('');
 }
 function renderPriority(reports){
   $("priority-list").innerHTML = reports.slice(0,4).map(r=>`

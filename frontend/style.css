@@ -217,6 +217,19 @@ body {
   transition: border-color var(--trans), color var(--trans);
 }
 .hero-tag:hover { border-color: var(--teal); color: var(--teal); }
+/* Active: area has at least one submitted report */
+.hero-tag--active {
+  color: var(--teal);
+  border-color: rgba(45,212,191,.45);
+  background: rgba(45,212,191,.10);
+}
+.hero-tag--active:hover { border-color: var(--teal); background: rgba(45,212,191,.18); }
+/* Indicator dot shown inside active area tags */
+.area-dot {
+  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--teal); margin-left: 5px; vertical-align: middle;
+  box-shadow: 0 0 4px rgba(45,212,191,.6);
+}
 
 .hero-action { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
 .hero-hint { font-size: 10px; color: rgba(184,203,223,.6); text-align: right; }
