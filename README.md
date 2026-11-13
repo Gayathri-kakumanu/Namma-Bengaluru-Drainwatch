@@ -1,110 +1,303 @@
+# 🌧️ DrainWatch AI — Namma Bengaluru
 
-DrainWatch AI — Namma Bengaluru
+### AI-Powered Drainage Reporting, Risk Assessment & Civic Response Tracking
 
-An end-to-end prototype for drainage reporting, transparent risk scoring, agent-style triage, and civic response tracking. Built for the IBM Bobathon.
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
+[![Database](https://img.shields.io/badge/Database-SQLite-blue.svg)](https://www.sqlite.org/)
+[![Frontend](https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS%20%7C%20JavaScript-orange.svg)]()
+[![Hosting](https://img.shields.io/badge/Hosted%20on-Render-purple.svg)](https://render.com/)
 
-🔗 Live demo: namma-bengaluru-drainwatch.onrender.com 📖 API docs: /docs
+**DrainWatch AI** is an end-to-end civic technology prototype designed to improve drainage monitoring and waterlogging response in Bengaluru.
 
-Note: If the demo is hosted on a free Render tier, the first request after a period of inactivity may take up to a minute while the service wakes up. Data submitted to the public demo may be reset on redeploy, so please don't enter personal or sensitive information.
+The platform enables residents to report blocked or overflowing drains, evaluates reports using a transparent risk-scoring system, uses explainable workflow agents for intelligent triage, and helps civic officers monitor reports through a centralized dashboard.
 
-Table of contents
-What it does
-Important prototype boundaries
-Tech stack
-Requirements
-Run locally
-Demo flow
-Risk score
-Data model
-Suggested next steps
-IBM Bob story
-Image attribution
-What it does
-Lets residents and officers report blocked or overflowing drains with a location, severity inputs, and an optional photo.
-Produces a transparent, explainable risk score and band for each report.
-Runs deterministic workflow agents that explain their findings and suggest a recommended action.
-Provides a dashboard and map for human officers to review reports and track status through to resolution.
-Important prototype boundaries
-The included agents are deterministic, explainable workflow agents. They are not presented as a trained flood-prediction model.
-Uploaded photos are stored as evidence. This starter does not claim computer-vision detection from photos.
-Rainfall, blockage, site vulnerability, and historical-waterlogging inputs are supplied by the reporter/officer or seeded demo data.
-The score is a prioritisation heuristic, not a probability of flooding or an official warning.
-Alerts are drafts for human review. The app does not contact emergency services or dispatch crews.
-Tech stack
-Backend: Python, FastAPI (served with Uvicorn)
-Database: SQLite
-Frontend: HTML/CSS/JavaScript with Leaflet and OpenStreetMap tiles
-Hosting (demo): Render
-Requirements
-Python 3.10+
-A modern browser
-Internet connection for Leaflet/OpenStreetMap map tiles (optional; the app still works without the map tiles)
-Run locally
-Windows
-Clone the repo or extract the ZIP.
-Open the DrainWatch_AI folder in IBM Bob or VS Code.
-Open a terminal in this folder.
-Create and activate a virtual environment:
-powershell
+🚀 **Built for the IBM Bobathon.**
+
+---
+
+## 🔗 Live Demo & Documentation
+
+- 🌐 **Live Demo:** https://namma-bengaluru-drainwatch.onrender.com
+- 📖 **API Documentation:** https://namma-bengaluru-drainwatch.onrender.com/docs
+
+> **Note:** The demo is hosted on Render's free tier. The first request after inactivity may take up to a minute while the service wakes up. Data submitted to the public demo may be reset during redeployment. Please do not enter personal or sensitive information.
+
+---
+
+## 📌 Table of Contents
+
+- [What It Does](#-what-it-does)
+- [Key Features](#-key-features)
+- [Important Prototype Boundaries](#-important-prototype-boundaries)
+- [Technology Stack](#-technology-stack)
+- [Requirements](#-requirements)
+- [Installation & Local Setup](#-installation--local-setup)
+- [Demo Workflow](#-demo-workflow)
+- [Risk Scoring System](#-risk-scoring-system)
+- [Database Structure](#-database-structure)
+- [Future Enhancements](#-future-enhancements)
+- [IBM Bobathon Integration](#-ibm-bobathon-integration)
+- [Image Attribution](#-image-attribution)
+
+---
+
+## 🌟 What It Does
+
+DrainWatch AI provides a centralized platform for drainage issue reporting, risk assessment, and civic response management.
+
+1. **Drainage Reporting:** Residents and officers can report blocked or overflowing drains with location details, severity information, and optional photographs.
+2. **Risk Assessment:** Each report receives an explainable risk score based on drainage blockage, rainfall, site vulnerability, and historical waterlogging.
+3. **AI-Style Agent Triage:** Deterministic workflow agents analyze reports, explain their findings, and recommend appropriate actions.
+4. **Interactive Dashboard:** Officers can view reported incidents and monitor their priority and current status.
+5. **Map-Based Monitoring:** Reports can be reviewed geographically using an interactive map.
+6. **Response Tracking:** Officers can update report statuses and track incidents toward resolution.
+
+## ✨ Key Features
+
+- Resident-friendly drainage complaint submission.
+- Location-based incident reporting.
+- Optional photographic evidence uploads.
+- Transparent risk scoring and classification.
+- Explainable agent-based report analysis.
+- Recommended actions for different risk levels.
+- Interactive dashboard for civic officers.
+- Map visualization using Leaflet and OpenStreetMap.
+- Human-in-the-loop complaint management.
+- REST API with FastAPI documentation.
+
+---
+
+## ⚠️ Important Prototype Boundaries
+
+This project is currently an experimental prototype.
+
+- The included agents are deterministic, explainable workflow agents, not a trained flood-prediction model.
+- Uploaded photographs are stored as supporting evidence. Automated computer-vision detection is not currently implemented.
+- Rainfall, blockage, site vulnerability, and historical waterlogging inputs are provided by users, officers, or seeded demo data.
+- Risk scores are prioritization heuristics, not probabilities of flooding or official warnings.
+- Alerts are generated as drafts for human review.
+- The application does not automatically contact emergency services or dispatch response teams.
+
+---
+
+## 🛠️ Technology Stack
+
+| Component | Technology |
+|---|---|
+| Backend | Python |
+| API Framework | FastAPI |
+| Server | Uvicorn |
+| Database | SQLite |
+| Frontend | HTML, CSS, JavaScript |
+| Interactive Maps | Leaflet |
+| Map Data | OpenStreetMap |
+| Hosting | Render |
+| API Documentation | Swagger UI |
+
+---
+
+## 💻 Requirements
+
+Before running the project locally, ensure you have:
+
+- Python 3.10 or later.
+- A modern web browser.
+- Git (optional, for cloning the repository).
+- VS Code or IBM Bob.
+- Internet connection for loading map tiles.
+
+---
+
+## 🚀 Installation & Local Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+```
+
+Navigate into the project directory:
+
+```bash
+cd DrainWatch_AI
+```
+
+### 2. Create a Virtual Environment
+
+**Windows:**
+
+```powershell
 py -m venv .venv
 .venv\Scripts\activate
-Install dependencies and start the API:
-powershell
-pip install -r backend/requirements.txt
-uvicorn backend.main:app --reload
-Open http://127.0.0.1:8000 in your browser.
-API documentation: http://127.0.0.1:8000/docs
-macOS / Linux
-bash
+```
+
+**macOS / Linux:**
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r backend/requirements.txt
+```
+
+### 4. Start the Application
+
+```bash
 uvicorn backend.main:app --reload
+```
 
-Then open http://127.0.0.1:8000.
+### 5. Open the Application
 
-Demo flow
-Open the dashboard (locally, or the live demo) and review the seeded sample reports.
-Submit a new report with a location, blockage severity, rainfall level, site vulnerability, and optional photo.
-Review the generated risk score, risk band, agent findings, and recommended action.
-Change a report status from the dashboard to demonstrate human-in-the-loop tracking.
-Risk score
+Once the server starts, open:
 
-risk = 0.35 * blockage + 0.35 * rainfall + 0.20 * site_vulnerability + 0.10 * historical_waterlogging
+- **Application:** http://127.0.0.1:8000
+- **API Documentation:** http://127.0.0.1:8000/docs
 
-Each input is 0–100. The result is clamped to 0–100.
+Your local DrainWatch AI application is now ready!
 
-Score	Band
-0–29	Low
-30–49	Moderate
-50–74	High
-75–100	Critical
+---
 
-These are initial demo weights and thresholds. Validate them against verified historical incident data before operational use.
+## 🔄 Demo Workflow
 
-Data model
+Follow these steps to explore the prototype:
 
-The SQLite reports table stores:
+1. Open the dashboard and review the sample drainage reports.
+2. Submit a new drainage complaint.
+3. Enter the location and relevant severity information.
+4. Add rainfall level, site vulnerability, and optional photographic evidence.
+5. Review the generated risk score and risk classification.
+6. Examine the workflow agents' findings and recommended actions.
+7. Update the report status through the officer dashboard.
+8. Monitor the report until it reaches the resolution stage.
 
-id, title, description, area, latitude, longitude
-blockage_severity, rainfall_score, site_vulnerability, historical_waterlogging
-risk_score, risk_level, priority, recommended_action
-status, evidence_filename, created_at, updated_at
-Suggested next steps
-Add a verified image classifier and evaluate it on a labelled dataset.
-Integrate an authorised rainfall/nowcast source; show source and timestamp beside each value.
-Add duplicate-report clustering by distance and time.
-Add role-based officer login and an audit log.
-Add notification delivery only after a human approves an alert.
-Validate risk weights with historical Bengaluru waterlogging and drainage data.
-IBM Bob story
+---
 
-Use the prompts in docs/IBM_BOB_PROMPTS.md. Capture screenshots of Bob's Plan, Agent, test-generation, debugging, and documentation work for the submission.
+## 📊 Risk Scoring System
 
-Image attribution
+DrainWatch AI uses a weighted scoring model to prioritize drainage incidents.
 
-The Vidhana Soudha background image (frontend/vidhana_soudha.jpg) is by Rameshng at Malayalam Wikipedia, sourced from Wikimedia Commons.
+### Risk Formula
 
-Source: Vidhan Soudha Bangalore Front view.JPG
-Licence: Creative Commons Attribution-ShareAlike 3.0
-If the image has been resized, cropped, or otherwise modified for this project, that counts as an adaptation and remains under the same licence.
+```text
+Risk Score =
+    (0.35 × Blockage Severity) +
+    (0.35 × Rainfall Score) +
+    (0.20 × Site Vulnerability) +
+    (0.10 × Historical Waterlogging)
+```
+
+Each input value ranges from **0 to 100**.
+
+The final score is clamped between 0 and 100.
+
+### Risk Classification
+
+| Risk Score | Risk Level |
+|---|---|
+| 0–29 | 🟢 Low |
+| 30–49 | 🟡 Moderate |
+| 50–74 | 🟠 High |
+| 75–100 | 🔴 Critical |
+
+> These weights and thresholds are initial prototype settings. They should be validated against verified historical Bengaluru drainage and waterlogging incident data before operational deployment.
+
+---
+
+## 🗄️ Database Structure
+
+The application uses SQLite to store drainage reports.
+
+### Reports Table
+
+| Field | Description |
+|---|---|
+| id | Unique report identifier |
+| title | Report title |
+| description | Incident description |
+| area | Reported location |
+| latitude | Geographic latitude |
+| longitude | Geographic longitude |
+| blockage_severity | Drainage blockage score |
+| rainfall_score | Rainfall severity score |
+| site_vulnerability | Location vulnerability score |
+| historical_waterlogging | Historical waterlogging score |
+| risk_score | Calculated risk score |
+| risk_level | Risk classification |
+| priority | Incident priority |
+| recommended_action | Suggested response |
+| status | Current report status |
+| evidence_filename | Uploaded evidence filename |
+| created_at | Report creation timestamp |
+| updated_at | Last update timestamp |
+
+---
+
+## 🔮 Future Enhancements
+
+Potential improvements for the next development phase:
+
+- [ ] Integrate a verified AI-based drainage image classifier.
+- [ ] Connect real-time rainfall and weather APIs.
+- [ ] Implement duplicate complaint detection.
+- [ ] Add distance-based incident clustering.
+- [ ] Introduce secure role-based officer authentication.
+- [ ] Implement an audit log for report updates.
+- [ ] Add notification delivery after officer approval.
+- [ ] Validate risk-scoring weights using historical Bengaluru data.
+- [ ] Improve geographical visualization and incident analytics.
+- [ ] Explore predictive waterlogging risk assessment using verified datasets.
+
+---
+
+## 🤖 IBM Bobathon Integration
+
+DrainWatch AI was developed as part of the **IBM Bobathon**, exploring AI-assisted software development and agent-based workflows.
+
+The project uses IBM Bob to support the development process.
+
+For development prompts and workflow documentation, refer to:
+
+[`docs/IBM_BOB_PROMPTS.md`](docs/IBM_BOB_PROMPTS.md)
+
+Recommended submission evidence includes:
+
+- IBM Bob Plan workflow screenshots.
+- Agent execution screenshots.
+- Test generation results.
+- Debugging workflow screenshots.
+- Documentation generation evidence.
+
+---
+
+## 🖼️ Image Attribution
+
+The Vidhana Soudha background image used in the frontend (`frontend/vidhana_soudha.jpg`) is credited to **Rameshng**, sourced from Wikimedia Commons.
+
+- **Source:** Vidhan Soudha Bangalore Front view.JPG
+- **License:** Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0).
+
+If the image has been resized, cropped, or otherwise modified, the adaptation must comply with the same license requirements.
+
+---
+
+## 👨‍💻 Project Information
+
+**Project:** DrainWatch AI — Namma Bengaluru  
+**Category:** AI-Powered Civic Technology  
+**Purpose:** Drainage Reporting, Risk Assessment & Civic Response Tracking  
+**Event:** IBM Bobathon
+
+---
+
+<p align="center">
+  <b>🌧️ Building a Smarter, Safer & More Responsive Namma Bengaluru 🌆</b>
+</p>
+
+<p align="center">
+  Made with ❤️ for a better Bengaluru.
+</p>
